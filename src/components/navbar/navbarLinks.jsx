@@ -9,7 +9,7 @@ const navbarLinks = () => {
     { link: "Contact", section: "contact" },
  ]
   return (
-    <ul className='flex text-white gap-6 font-bold text-center py-4'>
+    <ul className='flex text-white gap-6 font-bold text-center lg:flex-row sm:flex-col lg:relative sm:absolute sm:top-[120%] sm:left-[50%] -translate-x-[50%] lg:text-md sm:text-xl sm:bg-cyan/25 backdrop-blur-lg lg-bg-black sm-w-full py-4'>
       {links.map((link,index)=>{
         return (
             <li key={index} className='group'>

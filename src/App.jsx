@@ -1,13 +1,12 @@
 import './App.css'
-import Navbar from './components/navbar'
+import NavbarMain from './components/navbar/navbarMain'
 
 function App() {
 
   return (
-    <>
-      <Navbar />
-      <p className='font-mono text-red-700 text-lg font-bold'>hello</p>
-    </>
+    <div className='font-body'>
+      <NavbarMain />
+    </div>
   )
 }
 

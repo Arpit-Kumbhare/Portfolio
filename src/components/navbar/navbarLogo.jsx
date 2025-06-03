@@ -3,7 +3,7 @@ import React from 'react'
 const navbarLogo = () => {
   return (
     <div>
-      <h1 className='text-white text-4xl sm:hidden md:block'>
+      <h1 className='text-white text-4xl font-semibold sm:hidden md:block'>
         Arpit Kumbhare
       </h1>
 

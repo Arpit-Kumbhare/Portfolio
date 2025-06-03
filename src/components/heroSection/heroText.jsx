@@ -8,7 +8,7 @@ const heroText = () => {
       
       <h1 className='sm:text-4xl md:text-6xl lg:text-[4.5rem] font-bold font-special text-orange shadow-inner'>Arpit<br/>Kumbhare</h1>
       
-      <p className='text-lg md:mt-4 text-white'>Aspiring web development engineer to complete your developer needs !</p>
+      <p className='text-xl md:mt-4 text-white'>Aspiring web development engineer to complete your developer needs !</p>
 
     </div>
   )

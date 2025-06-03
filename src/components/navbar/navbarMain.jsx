@@ -14,7 +14,7 @@ const navbarMain = () => {
   return (
     <nav className="max-w-[1300px] mx-auto px-4 w-full fixed left-[50%] -translate-x-[50%] z-20 flex gap-4 mt-2">
       
-      <div className="max-w-[1200px] flex justify-between w-full mx-auto bg-black items-center p-6 rounded-r-full rounded-l-full border-[0.5px] border-orange">
+      <div className="max-w-[1200px] flex justify-between w-full mx-auto bg-black items-center p-6 rounded-r-full rounded-l-full border-[0.5px] border-orange/25">
       
       <NavbarLogo />
 
@@ -26,8 +26,8 @@ const navbarMain = () => {
       
       </div>
 
-      <div className="flex lg:hidden sm:block p-6 bg-black items-center justify-center rounded-full border-[0.5px] border-orange ">
-        <button className="text-2xl border border-orange p-3 text-white rounded-full " onClick={toggleMenu}>
+      <div className="flex lg:hidden sm:block p-6 bg-black items-center justify-center rounded-full border-[0.5px] border-orange/25 ">
+        <button className="text-4xl p-1 text-white rounded-full " onClick={toggleMenu}>
           <GiHamburgerMenu />
         </button>
       </div>

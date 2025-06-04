@@ -36,12 +36,24 @@ export default {
         orangeBigShadow: "10px 10px 10000px 500px rgba(240, 169, 79, 0.3)",
         orangeMediumShadow: "10px 10px 2000px 150px rgba(240, 169, 79, 0.5)",
       },
+      textShadow: {
+        white: "0px 2px 8px rgba(255, 255, 255, 0.5)",
+      },
     },
     fontFamily: {
       body:['Josefin Sans'],
-      special:['Roboto']
+      special:['Roboto'],
+      heading:['Edu NSW ACT Cursive']
     }
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        '.text-shadow-white': {
+          textShadow: '0 2px 8px rgba(255, 255, 255, 0.5)',
+        },
+      })
+    }
+  ],
 }
 

@@ -6,7 +6,7 @@ const heroText = () => {
 
       <h2 className='font-special lg:text-2xl sm:text-xl uppercase text-grey '>Full Stack Web Developer</h2>
       
-      <h1 className='sm:text-4xl md:text-6xl lg:text-[4.5rem] font-bold font-special text-orange shadow-inner'>Arpit<br/>Kumbhare</h1>
+      <h1 className='sm:text-4xl md:text-6xl lg:text-[4.5rem] font-bold font-heading text-orange shadow-inner'>Arpit<br/><span className='block pt-4'> Kumbhare</span></h1>
       
       <p className='text-xl md:mt-4 text-white'>Aspiring web development engineer to complete your developer needs !</p>
 

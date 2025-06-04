@@ -1,8 +1,11 @@
 import React from 'react'
 
-const oneSkill = ({imgSvg, text}) => {
+const OneSkill = ({imgSvg, text, onHover}) => {
   return (
-    <div className='flex justify-center items-center h-[130px] w-[130px] hover:scale-110 transition-all duration-500'>
+    <div className='flex justify-center items-center h-[130px] w-[130px] hover:scale-110 transition-all duration-500' 
+      onMouseEnter={() => onHover(text)}
+      onMouseLeave={() => onHover('')}
+    >
 
       <div className='absolute h-[130px] w-[130px] border-none rounded-full bg-gradient-to-r from-lightBrown via-brown to-darkBrown animate-spin slow-spin hover:scale-110 transition-all duration-500'>
 
@@ -19,4 +22,4 @@ const oneSkill = ({imgSvg, text}) => {
   )
 }
 
-export default oneSkill
+export default OneSkill

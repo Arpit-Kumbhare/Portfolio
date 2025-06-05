@@ -6,6 +6,7 @@ import HeroSubSection from './components/heroSection/heroSubSection'
 import AboutMeMain from './components/aboutMe/aboutMeMain'
 import AboutMeGradient from './components/aboutMe/aboutMeGradient'
 import SkillsMain from './components/skills/skillsMain'
+import ExperienceMain from './components/experience/experienceMain'
 import Helper from './components/helper'
 
 
@@ -17,9 +18,10 @@ function App() {
       <HeroMain />
       <HeroGradient />
       <HeroSubSection />
-      <AboutMeGradient />
+      <AboutMeGradient /> 
       <AboutMeMain />
       <SkillsMain />
+      <ExperienceMain />
       <Helper />
     </div>
   )

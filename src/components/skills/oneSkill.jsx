@@ -2,7 +2,7 @@ import React from 'react'
 
 const OneSkill = ({imgSvg, text, onHover}) => {
   return (
-    <div className='flex justify-center items-center h-[130px] w-[130px] hover:scale-110 transition-all duration-500' 
+    <div className='flex justify-center items-center h-[130px] w-[130px] hover:scale-125 transition-all duration-500' 
       onMouseEnter={() => onHover(text)}
       onMouseLeave={() => onHover('')}
     >

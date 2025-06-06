@@ -7,6 +7,7 @@ import AboutMeMain from './components/aboutMe/aboutMeMain'
 import AboutMeGradient from './components/aboutMe/aboutMeGradient'
 import SkillsMain from './components/skills/skillsMain'
 import ExperienceMain from './components/experience/experienceMain'
+import ProjectsMain from './components/projects/projectsMain'
 import Helper from './components/helper'
 
 
@@ -22,6 +23,7 @@ function App() {
       <AboutMeMain />
       <SkillsMain />
       <ExperienceMain />
+      <ProjectsMain />
       <Helper />
     </div>
   )

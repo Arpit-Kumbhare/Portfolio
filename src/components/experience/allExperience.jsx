@@ -32,12 +32,13 @@ const allExperience = () => {
   ]
 
   return (
-    <div className='flex lg:flex-row md:flex-col items-center justify-center gap-4 mt-12'>
+    <div className='flex lg:flex-row sm:flex-col items-center justify-center gap-4 mt-12'>
       
       
       {Experiences.map((experience,index) => {
         return <>
                 <SingleExperience
+                  key={index}
                   company = {experience.company}
                   job = {experience.job}
                   location = {experience.location}
@@ -46,7 +47,7 @@ const allExperience = () => {
                   reponsibilites = {experience.reponsibilites}
                 />
                 <div className='sm:hidden lg:block'>
-                {index < 1 ? <FaArrowRight className='text-white text-9xl'/> : "" }
+                {index < 1 ? <FaArrowRight className='text-white text-7xl'/> : "" }
                 </div>
                 <div className='sm:block lg:hidden'>
                 {index < 1 ? <FaArrowDown className='text-white text-5xl'/> : "" }

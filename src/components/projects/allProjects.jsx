@@ -26,7 +26,7 @@ const allProjects = () => {
     <div className='flex flex-col gap-8 max-w-[1200px] mx-auto px-4'>
       {Projects.map((project,index) => {
         return <SingleProject 
-                  key={index}
+                  key={project.name}
                   index={index}
                   project={project}
               />

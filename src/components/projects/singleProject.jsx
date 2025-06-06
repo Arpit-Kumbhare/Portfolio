@@ -19,8 +19,8 @@ const singleProject = ({project, index}) => {
               href={project.url}
               target='_blanck'
               rel='noopner noreferrer'>
-                <button className='mt-2 text-blue text-xs h-[30px] w-[100px] bg-lightBrown border-[1px] border-darkBrown flex justify-center items-center rounded-lg hover:scale-105 transition-all duration-500'>
-                    View <FiArrowUpRight />
+                <button className='font-extrabold mt-2 text-blue text-xs h-[30px] w-[100px] bg-lightBrown border-[1px] border-darkBrown flex justify-center items-center rounded-lg hover:scale-105 transition-all duration-500'>
+                    view <FiArrowUpRight />
                 </button>
             </a>
       </div>

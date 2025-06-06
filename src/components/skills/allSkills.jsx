@@ -70,7 +70,7 @@ const allSkills = () => {
              })}
         </div>
 
-        <div className='sm:hidden lg:flex relative justify-center items-center h-[110px] w-[310px] my-1 border-none rounded-full bg-gradient-to-r from-lightBrown via-brown to-darkBrown animate-pulse -z-10'>
+        <div className='sm:hidden lg:flex relative justify-center items-center h-[110px] w-[310px] my-1 border-none rounded-full bg-gradient-to-r from-lightBrown via-brown to-darkBrown -z-10'>
 
              <div className='absolute  h-[100px] w-[300px] border-none rounded-full bg-brown/100 mix-blend-normal flex justify-center items-center z-0' >
 

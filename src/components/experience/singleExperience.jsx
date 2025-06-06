@@ -3,7 +3,7 @@ import React from 'react'
 const singleExperience = ({company, job, location, startDate, endDate, reponsibilites}) => {
   return (
     <div>
-        <div className='text-xl text-white/60 lg:h-[350px] sm:h-auto lg:w-auto sm:w-auto border-dashed border-[2px] rounded-lg p-4 flex flex-col justify-start items-start hover:scale-105 transition-all duration-500'>
+        <div className='text-lg text-white/60 lg:h-[350px] sm:h-auto lg:w-auto sm:w-auto border-dashed border-[2px] rounded-lg p-4 flex flex-col justify-start items-start hover:scale-105 transition-all duration-500'>
          
           <p className='text-2xl text-white font-extrabold tracking-wide'>{job}</p>
           <br />

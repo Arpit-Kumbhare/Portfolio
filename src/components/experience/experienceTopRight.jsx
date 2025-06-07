@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { fadeIn } from '../varients'
+import ExperienceImage from '/images/experience-image.png'
 
 const experienceTopRight = () => {
   return (
@@ -10,7 +11,7 @@ const experienceTopRight = () => {
       whileInView='show'
       viewport={{once: false, amount: 0}}
     >
-      <img src="/images/experience-image.png" alt="experience image" className='sm:max-w-[300px] md:max-w-[400px]'/>
+      <img src={ExperienceImage} alt="experience image" className='sm:max-w-[300px] md:max-w-[400px]'/>
     </motion.div>
   )
 }

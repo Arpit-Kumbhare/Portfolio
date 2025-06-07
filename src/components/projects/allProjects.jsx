@@ -20,7 +20,13 @@ const allProjects = () => {
             img:'./images/weather.png',
             url:'#',
             desc:'Modern and responsive weather application built with React that provides real-time weather information for any city. The app features a clean and intuitive user interface with a beautiful background design. It utilizes Axios for efficient API calls to fetch real-time weather data from OpenWeatherMap.'
-        }
+        },
+        {
+            name:"Portfolio",
+            img:'./images/portfolio.png',
+            url:'https://arpit-kumbhare.github.io/Portfolio/',
+            desc:'I created this portfolio using Vite-React along with various packages such as react-icons for modern icons, react-scroll for seamless and smooth scrolling and navigation within thes site, also used framer-motion package or currently known as motion for adding animations to elements while using the site.'
+        },
     ]
   return (
     <div className='flex flex-col gap-8 max-w-[1200px] mx-auto px-4'>

@@ -2,6 +2,8 @@ import React from 'react'
 import SingleExperience from './singleExperience'
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowDown } from "react-icons/fa";
+import { motion } from 'framer-motion'
+import { fadeIn } from '../varients'
 
 const allExperience = () => {
   const Experiences = [
@@ -32,7 +34,12 @@ const allExperience = () => {
   ]
 
   return (
-    <div className='flex lg:flex-row sm:flex-col items-center justify-center gap-4 mt-12'>
+    <motion.div 
+      variants={fadeIn("right",0)}
+      initial='hidden'
+      whileInView='show'
+      viewport={{once: false, amount: 0}}
+      className='flex lg:flex-row sm:flex-col items-center justify-center gap-4 mt-12'>
       
       
       {Experiences.map((experience,index) => {
@@ -54,7 +61,7 @@ const allExperience = () => {
                 </div>
                 </>
       })}
-    </div>
+    </motion.div>
   )
 }
 

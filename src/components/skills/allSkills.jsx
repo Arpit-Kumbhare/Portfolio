@@ -11,6 +11,8 @@ import { FaNode } from "react-icons/fa";
 import { BiLogoTailwindCss } from "react-icons/bi";
 import OneSkill from './oneSkill';
 import HoveredSkill from './hoveredSkill';
+import { motion } from 'framer-motion'
+import { fadeIn } from '../varients'
 
 const allSkills = () => {
 
@@ -56,8 +58,12 @@ const allSkills = () => {
     ]
 
   return (
-    <div className=' flex justify-center items-center flex-col'>
-
+    <motion.div 
+        variants={fadeIn("up",0)}
+        initial='hidden'
+        whileInView='show'
+        viewport={{once: false, amount: 0}}
+        className=' flex justify-center items-center flex-col'>
         
         <div className='flex justify-center items-center relative gap-12 px-[2rem] py-[4rem] max-w-[1200px] mx-auto flex-wrap'>
              {Skills.map((skill, index)=>{
@@ -84,7 +90,7 @@ const allSkills = () => {
         
         
 
-    </div>
+    </motion.div>
   )
 }
 

@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-scroll';
 
 const footerMain = () => {
     const links = [
         { link: "About Me", section: "about" },
         { link: "Skills", section: "skills" },
         { link: "Experience", section: "experience" },
-        { link: "Projects", section: "contact" },
+        { link: "Projects", section: "project" },
         { link: "Contact", section: "contact" },
     ]
 
@@ -20,8 +21,19 @@ const footerMain = () => {
             <ul className='flex sm:flex-col lg:flex-row gap-4'>
                     {links.map((link,index)=>{
                         return <li 
-                            className='text-lightGrey font-body font-semibold'>
-                                <a href="#">{link.link}</a>
+                            className='text-lightGrey font-body '>
+                                <Link 
+                                    href="#"
+                                    key={index}
+                                    to={link.section}
+                                    smooth={true}
+                                    offset={-130}
+                                    spy={true}
+                                    duration={500}
+                                    
+                                >
+                                        {link.link}
+                                </Link>
                             </li>
                     })}
             </ul>

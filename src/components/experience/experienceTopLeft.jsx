@@ -1,8 +1,15 @@
 import React from 'react'
+import { motion } from 'framer-motion'
+import { fadeIn } from '../varients'
 
 const experienceTopLeft = () => {
   return (
-    <div className='flex flex-col justify-center items-center gap-4 max-w-[300px] ' >
+    <motion.div
+      variants={fadeIn("right",0)}
+      initial='hidden'
+      whileInView='show'
+      viewport={{once: false, amount: 0}}
+      className='flex flex-col justify-center items-center gap-4 max-w-[300px] ' >
       <p className='text-lightBrown font-bold font-body text-3xl'>2024 Onwards</p>
 
       <div className='flex flex-col items-center justify-center'>
@@ -17,7 +24,7 @@ const experienceTopLeft = () => {
 
       <p className='text-white font-body text-xl text-center '>Experience with multiple internships for almost a year and counting in which I developed many projects.</p>
 
-    </div>
+    </motion.div>
   )
 }
 

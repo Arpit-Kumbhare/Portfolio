@@ -4,7 +4,7 @@ import AllSkills from './allSkills'
 
 const skillsMain = () => {
   return (
-    <div>
+    <div id='skills'>
       <SkillsText />
       <AllSkills />
     </div>

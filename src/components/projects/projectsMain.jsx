@@ -4,7 +4,7 @@ import AllProjects from './allProjects'
 
 const projectsMain = () => {
   return (
-    <div>
+    <div id='project'>
       <ProjectText />
       <AllProjects />
     </div>

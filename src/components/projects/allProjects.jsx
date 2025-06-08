@@ -4,7 +4,7 @@ import SingleProject from './singleProject'
 const allProjects = () => {
     const Projects = [
         {
-            name:"Leetcode Metrix",
+            name:"Leetcode Metrics",
             img: './images/leetMetrics.png',
             url: "https://arpit-kumbhare.github.io/LeetMetrics/",
             desc:"Sleek and interactive web application that fetches and displays a user's LeetCode statistics in real time. Built with HTML, CSS, and vanilla JavaScript, it visually represents problem-solving progress across Easy, Medium and Hard difficulties using colorful circular stats and data cards."

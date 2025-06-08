@@ -15,7 +15,7 @@ import FooterMain from './components/footer/footerMain'
 function App() {
 
   return (
-    <div className='font-body'>
+    <div className='font-body text-white relative overflow-hidden'>
       <NavbarMain />
       <HeroMain />
       <HeroGradient />

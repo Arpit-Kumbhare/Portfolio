@@ -14,7 +14,7 @@ const singleProject = ({project, index}) => {
       <div className='py-8 max-w-[500px] gap-1 flex flex-col sm:items-center md:items-start'>
             <h2 className='text-white font-extrabold text-2xl'>{project.name}</h2>
             
-            <p className='text-lightGrey text-sm'>{project.desc}</p>
+            <p className='text-lightGrey text-justify text-sm'>{project.desc}</p>
             
             <a 
               href={project.url}

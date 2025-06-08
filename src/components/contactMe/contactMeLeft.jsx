@@ -44,13 +44,13 @@ const contactMeLeft = () => {
 
 
   return (
-    <div className='flex flex-col gap-4 w-2/5' >
+    <div className='flex flex-col justify-center items-center gap-4 sm:w-[80%] md:w-2/5' >
 
       <h2 className='text-darkBrown text-3xl font-bold'>Get in touch</h2>
 
       <p className='text-lg text-white font-semibold'>{success}</p>
 
-      <form onSubmit={handleSubmit}  ref={form} className='flex flex-col gap-3 max-w-[700px]'>
+      <form onSubmit={handleSubmit}  ref={form} className='flex flex-col gap-3 sm:w-[100%] md:max-w-[700px]'>
 
         <input 
             name='name' 
@@ -77,7 +77,9 @@ const contactMeLeft = () => {
             onChange={handleMessage}
             />
         <button 
-            className='text-white p-3 bg-blue rounded-lg font-semibold hover:bg-cyan' >Send</button>
+            className='text-white p-3 bg-blue rounded-lg font-semibold hover:bg-cyan/90 transition-all duration-500' >
+              Send
+        </button>
       
       </form>
 

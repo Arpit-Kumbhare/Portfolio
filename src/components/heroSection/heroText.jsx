@@ -18,14 +18,14 @@ const heroText = () => {
         initial='hidden'
         whileInView='show'
         viewport={{once: false, amount: 0}} 
-        className='sm:text-4xl md:text-6xl lg:text-[4.5rem] font-bold font-heading text-orange shadow-inner'>Arpit<br/><span className='block pt-4'> Kumbhare</span></motion.h1>
+        className='sm:text-5xl md:text-6xl lg:text-[5rem] font-bold font-heading text-white shadow-inner'>Arpit<br/><span className='block pt-4'> Kumbhare</span></motion.h1>
       
       <motion.p
         variants={fadeIn("up",0)}
         initial='hidden'
         whileInView='show'
         viewport={{once: false, amount: 0}} 
-       className='text-xl md:mt-4 text-white'>Aspiring web development engineer to complete your developer needs !</motion.p>
+       className='sm:text-lg md:text-xl md:mt-4 text-lightCyan'>Aspiring web development engineer to complete your developer needs !</motion.p>
 
     </div>
   )

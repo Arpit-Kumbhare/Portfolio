@@ -20,9 +20,9 @@ const contactMeRight = () => {
             <SingleInfo text="India" Icon={FaLocationDot} />
         </div>
         <div className='flex flex-row gap-4 text-white'>
-            <SocialInfo handle="Arpit-Kumbhare" Ico={FaSquareGithub} />
-            <SocialInfo handle="arpit-kumbhare" Ico={FaLinkedin} />
-            <SocialInfo handle="arpit.kumbhare" Ico={FaSquareInstagram} />
+            <SocialInfo handle="Arpit-Kumbhare" Ico={FaSquareGithub} url="https://github.com/Arpit-Kumbhare" />
+            <SocialInfo handle="arpit-kumbhare" Ico={FaLinkedin} url="https://www.linkedin.com/in/arpit-kumbhare/" />
+            <SocialInfo handle="arpit.kumbhare" Ico={FaSquareInstagram} url="https://www.instagram.com/arpit.kumbhare/" />
         </div>
     </div>
 

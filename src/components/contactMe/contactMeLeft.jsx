@@ -46,7 +46,7 @@ const contactMeLeft = () => {
   return (
     <div className='flex flex-col justify-center items-center gap-4 sm:w-[80%] md:w-2/5' >
 
-      <h2 className='text-darkBrown text-3xl font-bold'>Get in touch</h2>
+      <h2 className='text-darkBrown text-3xl font-bold lg:mt-0 sm:mt-4'>Get in touch</h2>
 
       <p className='text-lg text-white font-semibold'>{success}</p>
 

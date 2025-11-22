@@ -6,6 +6,6 @@ export default defineConfig({
   base: "/Portfolio/",
   server: { 
     open: true,
-    port: 3333, 
+    port: 30001, 
     },
 });

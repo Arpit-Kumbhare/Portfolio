@@ -6,7 +6,7 @@ export default defineConfig(({mode}) => {
 
   return {
     plugins: [react()],
-    base: isGithub ? '/Portfolio' : '/',
+    base: isGithub ? '/Portfolio/' : '/',
     server: {
       open: true,
       port: 30001,

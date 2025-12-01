@@ -9,6 +9,7 @@
     "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
+    "build:github": "ROLLUP_SKIP_NODEJS_NATIVE=1 vite build --mode=github",
     "preview": "vite preview"
   },
   "dependencies": {

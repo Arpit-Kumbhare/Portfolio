@@ -22,13 +22,11 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - name: Build with Vite (github mode)
-        run: npm run build -- --mode=github
-        env:
-          ROLLUP_SKIP_NODEJS_NATIVE: true
+      - run: npm run build:github
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./frontend/dist
+
 
   deploy:
     environment:

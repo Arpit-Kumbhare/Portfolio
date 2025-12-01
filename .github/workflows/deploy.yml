@@ -13,14 +13,20 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 18 }
+        with:
+          node-version: 18
       - run: npm ci
       - run: npm run build -- --mode=github
       - uses: actions/upload-pages-artifact@v3
-        with: { path: dist }
+        with:
+          path: ./frontend/dist
+
   deploy:
     environment:
       name: github-pages
@@ -30,3 +36,4 @@ jobs:
     steps:
       - id: deploy
         uses: actions/deploy-pages@v4
+

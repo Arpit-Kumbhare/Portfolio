@@ -11,6 +11,9 @@ dist/
 build/
 .vite/
 vite.config.local.*
+frontend/dist
+frontend/node_modules
+
 
 # Logs / reports
 logs/

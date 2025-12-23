@@ -1,11 +1,14 @@
 import React, { useRef, useState } from 'react';
-import { FaUser, FaFolderOpen, FaBriefcase, FaEnvelope } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { FaHome, FaUser, FaFolderOpen, FaBriefcase, FaEnvelope, FaPenNib } from 'react-icons/fa';
 
 const items = [
+  { id: 'home', icon: <FaHome />, label: 'Home', to: '/' },
   { id: 'about', icon: <FaUser />, label: 'About' },
   { id: 'experience', icon: <FaBriefcase />, label: 'Experience' },
   { id: 'projects', icon: <FaFolderOpen />, label: 'Projects' },
   { id: 'contact', icon: <FaEnvelope />, label: 'Contact' },
+  { id: 'blogs', icon: <FaPenNib />, label: 'Blogs', to: '/blogs' },
 ];
 
 const Dock = () => {
@@ -96,13 +99,9 @@ const Dock = () => {
         const scale = scales[idx] ?? 1;
         const lift = -(scale - 1) * 16; // lift proportional to scale
         const isActive = idx === activeIndex;
+        const to = item.to ?? `/#${item.id}`;
         return (
-          <a
-            key={item.id}
-            href={`#${item.id}`}
-            className="dock-item"
-            aria-label={item.label}
-          >
+          <Link key={item.id} to={to} className="dock-item" aria-label={item.label}>
             <span
               className="dock-icon"
               ref={(el) => (iconRefs.current[idx] = el)}
@@ -120,7 +119,7 @@ const Dock = () => {
             >
               {item.label}
             </span>
-          </a>
+          </Link>
         );
       })}
     </div>

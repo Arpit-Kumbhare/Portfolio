@@ -127,6 +127,90 @@ main { width: min(1050px, 92%); margin: 0 auto; padding-bottom: 160px; }
 .ext { margin-top:auto; font-size:0.75rem; text-decoration:none; color:var(--accent); font-weight:500; }
 .ext:hover { text-decoration:underline; }
 
+/* Blogs page */
+.blog-card-btn { text-align:left; cursor:pointer; }
+.blog-card-btn { appearance:none; background:transparent; border:none; padding:1.2rem 1.15rem 1.25rem; }
+
+/* Dark mode only: keep blog cards readable like landing-page cards */
+:root:not([data-theme='light']) .blog-card-btn {
+  color: var(--text);
+  background: #181b20;
+  border: 1px solid #262a30;
+}
+
+.blog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  background: rgba(20,23,28,0.35);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+}
+
+.blog-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.blog-modal {
+  position: fixed;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  border-radius: 18px;
+  will-change: left, top, width, height;
+  transition:
+    left 340ms cubic-bezier(.22,.61,.36,1),
+    top 340ms cubic-bezier(.22,.61,.36,1),
+    width 340ms cubic-bezier(.22,.61,.36,1),
+    height 340ms cubic-bezier(.22,.61,.36,1);
+}
+
+.blog-modal.is-closing {
+  transition:
+    left 280ms linear,
+    top 280ms linear,
+    width 280ms linear,
+    height 280ms linear;
+}
+
+.blog-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.blog-modal-body {
+  overflow: auto;
+  padding-right: 0.2rem;
+  scrollbar-gutter: stable;
+}
+
+.blog-modal.is-opening .blog-modal-body,
+.blog-modal.is-closing .blog-modal-body {
+  overflow: hidden;
+}
+
+.blog-content {
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.blog-content.is-visible {
+  opacity: 1;
+}
+
+.blog-paragraph { margin: 0 0 0.85rem; }
+.blog-close { font-size: 0.7rem; }
+
 .timeline { display:flex; flex-direction:column; gap:1.6rem; }
 .timeline-item { background:#181b20; border:1px solid #252a30; padding:1.2rem 1.3rem 1.15rem; border-radius:14px; }
 [data-theme='light'] .timeline-item { background:#ffffff; border-color:#d6dde6; }

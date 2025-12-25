@@ -77,7 +77,10 @@ const Dock = () => {
 
   const totalDelta = scales.reduce((acc, s) => acc + (s - 1), 0);
   // Slightly reduce how much the dock widens on hover
-  const padDelta = Math.min(90, Math.max(0, totalDelta * 10)) + (isHover ? 8 : 0);
+  const vw = typeof window !== 'undefined' ? window.innerWidth : 1200;
+  const padCap = vw <= 420 ? 22 : vw <= 650 ? 34 : 90;
+  const padGain = vw <= 650 ? 6 : 10;
+  const padDelta = Math.min(padCap, Math.max(0, totalDelta * padGain)) + (isHover ? 8 : 0);
 
   return (
     <div

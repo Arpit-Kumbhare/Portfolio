@@ -9,32 +9,35 @@ const Hero = () => {
   }, []);
 
   let summaryAnimIndex = 0;
-  const summaryNodes = Array.from(intro.summary).map((ch, idx) => {
-    if (ch === ' ') {
-      return (
-        <span key={idx} className="drop-space">&nbsp;</span>
-      );
-    }
-
-    const charIndex = summaryAnimIndex;
-    summaryAnimIndex += 1;
-
-    return (
-      <span
-        key={idx}
-        className="drop-char"
-        style={{ '--i': charIndex }}
-      >
-        {ch}
+  const words = String(intro.summary ?? '').split(' ');
+  const summaryNodes = words.flatMap((word, wordIndex) => {
+    const wordNode = (
+      <span key={`w-${wordIndex}`} className="drop-word">
+        {Array.from(word).map((ch, charInWordIndex) => {
+          const charIndex = summaryAnimIndex;
+          summaryAnimIndex += 1;
+          return (
+            <span
+              key={`w-${wordIndex}-c-${charInWordIndex}`}
+              className="drop-char"
+              style={{ '--i': charIndex }}
+            >
+              {ch}
+            </span>
+          );
+        })}
       </span>
     );
+
+    // Insert a single breakable space between words (but never split a word).
+    if (wordIndex === words.length - 1) return [wordNode];
+    return [wordNode, <span key={`s-${wordIndex}`} className="drop-space">&nbsp;</span>];
   });
   return (
     <section id="home" className="hero">
       <h1 className="hero-title hero-title-outside hero-title-animate">Hi,<br />I am Arpit</h1>
       <div className="hero-card-wrap hero-card-wrap-animate">
         <div className="hero-card" style={{ position: 'relative' }}>
-          <div className="blur-light" style={{position:'absolute',width:'120px',height:'120px',borderRadius:'50%',background:'rgba(0,180,255,0.25)',filter:'blur(40px)',pointerEvents:'none',left:'50%',top:'50%',transform:'translate(-50%,-50%)',transition:'left 0.2s, top 0.2s'}}></div>
           <p className="hero-desc hero-summary-drop">{summaryNodes}</p>
         </div>
       </div>

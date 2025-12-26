@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FaHome, FaUser, FaFolderOpen, FaBriefcase, FaEnvelope, FaPenNib } from 'react-icons/fa';
 
@@ -12,111 +12,155 @@ const items = [
 ];
 
 const Dock = () => {
+  const dockRef = useRef(null);
   const iconRefs = useRef([]);
-  const [scales, setScales] = useState(items.map(() => 1));
-  const [isHover, setIsHover] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(null);
-  const [isTouching, setIsTouching] = useState(false);
+  const tipRefs = useRef([]);
+  const rafIdRef = useRef(0);
+  const lastXRef = useRef(null);
+  const hoverRef = useRef(false);
+  const touchingRef = useRef(false);
+  const vwRef = useRef(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
-  const updateScales = (x) => {
-    const sigma = 95; // smoother, slightly wider spread
-    const amp = 0.6;  // increase peak scale for larger hover growth
-    
+  const padConfig = useMemo(() => {
+    const vw = vwRef.current;
+    const padCap = vw <= 420 ? 22 : vw <= 650 ? 34 : 90;
+    const padGain = vw <= 650 ? 6 : 10;
+    return { padCap, padGain };
+  }, []);
+
+  useEffect(() => {
+    const onResize = () => {
+      vwRef.current = window.innerWidth;
+    };
+    window.addEventListener('resize', onResize, { passive: true });
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  const setTipActive = (idx) => {
+    tipRefs.current.forEach((el, i) => {
+      if (!el) return;
+      const active = i === idx;
+      el.style.opacity = active ? '1' : '0';
+      el.style.visibility = active ? 'visible' : 'hidden';
+    });
+  };
+
+  const setDockPadding = (totalDelta) => {
+    const el = dockRef.current;
+    if (!el) return;
+
+    const vw = vwRef.current;
+    const padCap = vw <= 420 ? 22 : vw <= 650 ? 34 : 90;
+    const padGain = vw <= 650 ? 6 : 10;
+    const padDelta = Math.min(padCap, Math.max(0, totalDelta * padGain)) + (hoverRef.current ? 8 : 0);
+
+    el.style.padding = `0.6rem calc(0.85rem + ${padDelta}px)`;
+    el.style.touchAction = 'none';
+    // Disable padding transition during interaction for instant follow, enable it on leave for smooth reset
+    el.style.transitionProperty = touchingRef.current ? 'background, border-color, transform' : '';
+  };
+
+  const resetDock = () => {
+    hoverRef.current = false;
+    touchingRef.current = false;
+    lastXRef.current = null;
+
+    iconRefs.current.forEach((el) => {
+      if (!el) return;
+      el.style.transform = 'translateY(0px) scale(1)';
+    });
+    setTipActive(null);
+    setDockPadding(0);
+  };
+
+  const applyScalesAtX = (x) => {
+    const sigma = 95;
+    const amp = 0.6;
+
     let closestIndex = null;
     let minDistance = Infinity;
+    let totalDelta = 0;
 
-    const next = iconRefs.current.map((el, idx) => {
-      if (!el) return 1;
+    iconRefs.current.forEach((el, idx) => {
+      if (!el) return;
       const rect = el.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const d = Math.abs(cx - x);
-      
+
       if (d < minDistance) {
         minDistance = d;
         closestIndex = idx;
       }
 
       const s = 1 + amp * Math.exp(-(d * d) / (2 * sigma * sigma));
-      return s;
+      const lift = -(s - 1) * 16;
+      totalDelta += (s - 1);
+      el.style.transform = `translateY(${lift}px) scale(${s})`;
     });
-    
-    setScales(next);
-    // Only set active if within a reasonable distance (e.g., 150px)
-    setActiveIndex(minDistance < 150 ? closestIndex : null);
+
+    setDockPadding(totalDelta);
+    setTipActive(minDistance < 150 ? closestIndex : null);
+  };
+
+  const scheduleUpdate = (x) => {
+    lastXRef.current = x;
+    if (rafIdRef.current) return;
+    rafIdRef.current = requestAnimationFrame(() => {
+      rafIdRef.current = 0;
+      if (lastXRef.current == null) return;
+      applyScalesAtX(lastXRef.current);
+    });
   };
 
   const handleMouseMove = (e) => {
-    updateScales(e.clientX);
+    scheduleUpdate(e.clientX);
   };
 
   const handleTouchMove = (e) => {
-    // Prevent default to stop scrolling while dragging on dock if desired, 
-    // but usually for a dock you might want to allow scrolling if not interacting.
-    // However, for this specific "drag to scale" effect, we likely want to capture the move.
-    // e.preventDefault(); // Optional: decide if we want to block scroll. 
-    // For now, let's just update scales.
     if (e.touches[0]) {
-      updateScales(e.touches[0].clientX);
+      scheduleUpdate(e.touches[0].clientX);
     }
   };
 
   const handleTouchStart = (e) => {
-    setIsHover(true);
-    setIsTouching(true);
+    hoverRef.current = true;
+    touchingRef.current = true;
     if (e.touches[0]) {
-      updateScales(e.touches[0].clientX);
+      scheduleUpdate(e.touches[0].clientX);
     }
   };
 
   const handleMouseLeave = () => {
-    setScales(items.map(() => 1));
-    setIsHover(false);
-    setActiveIndex(null);
-    setIsTouching(false);
+    resetDock();
   };
-
-  const totalDelta = scales.reduce((acc, s) => acc + (s - 1), 0);
-  // Slightly reduce how much the dock widens on hover
-  const vw = typeof window !== 'undefined' ? window.innerWidth : 1200;
-  const padCap = vw <= 420 ? 22 : vw <= 650 ? 34 : 90;
-  const padGain = vw <= 650 ? 6 : 10;
-  const padDelta = Math.min(padCap, Math.max(0, totalDelta * padGain)) + (isHover ? 8 : 0);
 
   return (
     <div
       className="dock"
-      onMouseEnter={() => setIsHover(true)}
+      ref={dockRef}
+      onMouseEnter={(e) => { hoverRef.current = true; scheduleUpdate(e.clientX); }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleMouseLeave}
-      style={{ 
-        padding: `0.6rem calc(0.85rem + ${padDelta}px)`, 
-        touchAction: 'none',
-        // Disable padding transition during interaction for instant follow, enable it on leave for smooth reset
-        transitionProperty: isTouching ? 'background, border-color, transform' : undefined
-      }}
     >
       {items.map((item, idx) => {
-        const scale = scales[idx] ?? 1;
-        const lift = -(scale - 1) * 16; // lift proportional to scale
-        const isActive = idx === activeIndex;
         const to = item.to ?? `/#${item.id}`;
         return (
           <Link key={item.id} to={to} className="dock-item" aria-label={item.label}>
             <span
               className="dock-icon"
               ref={(el) => (iconRefs.current[idx] = el)}
-              style={{ transform: `translateY(${lift}px) scale(${scale})` }}
             >
               {item.icon}
             </span>
             <span 
               className="dock-tip"
+              ref={(el) => (tipRefs.current[idx] = el)}
               style={{ 
-                opacity: isActive ? 1 : 0,
-                visibility: isActive ? 'visible' : 'hidden',
+                opacity: 0,
+                visibility: 'hidden',
                 transition: 'opacity 0.2s ease, visibility 0.2s ease'
               }}
             >

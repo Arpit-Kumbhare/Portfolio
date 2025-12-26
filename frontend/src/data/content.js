@@ -2,7 +2,7 @@
 export const intro = {
   name: 'Arpit Kumbhare',
   tagline: 'Full Stack Web Developer',
-  summary: 'I am a Full Stack Web Developer experienced in building responsive landing pages, designing UI for web platforms, integrating APIs, and deploying modern React applications with smooth animations and tooling.'
+  summary: 'Transforming ideas into seamless websites '
 };
 
 export const about = {

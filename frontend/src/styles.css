@@ -197,8 +197,10 @@ main { width: min(1050px, 92%); margin: 0 auto; padding-bottom: 160px; }
 .hero-sub { margin:0 0 1.1rem; font-weight:650; font-size: clamp(1.02rem, 1.1vw, 1.18rem); letter-spacing:0.6px; color:#b8c4cf; }
 .hero-desc { line-height:1.55; font-weight:400; font-size: 1.3rem; color:#d0d6dc; }
 .hero-desc.hero-summary-drop {
-  font-family: 'Pacifico', cursive;
-  font-weight: 400;
+  font-family: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.25);
 }
 .hero-summary-drop {
   perspective: 900px;
@@ -210,9 +212,18 @@ main { width: min(1050px, 92%); margin: 0 auto; padding-bottom: 160px; }
   white-space: nowrap;
 }
 
+.hero-summary-drop .drop-word.drop-word-highlight {
+  color: var(--accent);
+  text-shadow: 0 0 12px rgba(77, 163, 255, 0.28);
+}
+
+[data-theme='light'] .hero-summary-drop .drop-word.drop-word-highlight {
+  text-shadow: 0 0 8px rgba(77, 163, 255, 0.18);
+}
+
 .hero-summary-drop .drop-char {
   display: inline-block;
-  margin-right: 0.06em;
+  margin-right: 0.02em;
   transform-style: preserve-3d;
   transform-origin: 50% 100%;
   opacity: 0;
@@ -471,7 +482,7 @@ main { width: min(1050px, 92%); margin: 0 auto; padding-bottom: 160px; }
   .toggle-text { display: none; }
 
   .hero { padding: 4.6rem 0 2.9rem; }
-  .hero-title { margin: 0 0 2.4rem; text-align: center; }
+  .hero-title { margin: 0 0 2.4rem; text-align: left; }
   .hero-card-wrap { display: flex; justify-content: center; }
   .hero-card { padding:2.2rem 1.9rem; }
 
@@ -485,7 +496,7 @@ main { width: min(1050px, 92%); margin: 0 auto; padding-bottom: 160px; }
   }
 
   .hero-summary-drop .drop-char {
-    margin-right: 0.07em;
+    margin-right: 0.02em;
   }
 
   .hero-summary-drop .drop-space {

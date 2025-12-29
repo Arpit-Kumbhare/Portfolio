@@ -49,14 +49,10 @@ function App() {
   const [theme, setTheme] = useState('dark');
 
   useEffect(() => {
-    const stored = localStorage.getItem('theme');
-    if (stored) {
-      setTheme(stored);
-    } else {
-      // Prefer system light if set
-      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-      setTheme(prefersLight ? 'light' : 'dark');
-    }
+    // Always load in DARK mode for every visitor/session.
+    setTheme('dark');
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
   }, []);
 
   useEffect(() => {

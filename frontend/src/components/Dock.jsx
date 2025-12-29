@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaHome, FaUser, FaFolderOpen, FaBriefcase, FaEnvelope, FaPenNib } from 'react-icons/fa';
 
 const items = [
@@ -12,6 +12,8 @@ const items = [
 ];
 
 const Dock = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const dockRef = useRef(null);
   const iconRefs = useRef([]);
   const tipRefs = useRef([]);
@@ -134,6 +136,50 @@ const Dock = () => {
     resetDock();
   };
 
+  const getScrollBehavior = () => {
+    const prefersReduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    return prefersReduce ? 'auto' : 'smooth';
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: getScrollBehavior() });
+  };
+
+  const scrollToId = (id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: getScrollBehavior(), block: 'start' });
+  };
+
+  const handleDockClick = (e, item) => {
+    // Home: always return to the initial landing state (top, no hash)
+    if (item.id === 'home') {
+      e.preventDefault();
+
+      if (location.pathname !== '/') {
+        navigate('/');
+      }
+
+      // Ensure hash is cleared so the URL matches first-load state.
+      if (typeof window !== 'undefined') {
+        window.history.replaceState(null, '', '/');
+      }
+
+      // Scroll after navigation/microtask.
+      setTimeout(scrollToTop, 0);
+      return;
+    }
+
+    // Section anchors: if user clicks the same section again, force scroll.
+    if (!item.to) {
+      const targetHash = `#${item.id}`;
+      if (location.pathname === '/' && location.hash === targetHash) {
+        e.preventDefault();
+        scrollToId(item.id);
+      }
+    }
+  };
+
   return (
     <div
       className="dock"
@@ -148,7 +194,13 @@ const Dock = () => {
       {items.map((item, idx) => {
         const to = item.to ?? `/#${item.id}`;
         return (
-          <Link key={item.id} to={to} className="dock-item" aria-label={item.label}>
+          <Link
+            key={item.id}
+            to={to}
+            className="dock-item"
+            aria-label={item.label}
+            onClick={(e) => handleDockClick(e, item)}
+          >
             <span
               className="dock-icon"
               ref={(el) => (iconRefs.current[idx] = el)}

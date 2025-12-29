@@ -2,7 +2,7 @@
 export const intro = {
   name: 'Arpit Kumbhare',
   tagline: 'Full Stack Web Developer',
-  summary: 'transforming ideas into seamless websites '
+  summary: 'Crafting end-to-end applications with focus on performance, usability, and clean architecture'
 };
 
 export const about = {

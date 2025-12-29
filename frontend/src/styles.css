@@ -89,6 +89,8 @@
   --bg-alt: #181b20;
   --text: #e7ecf2;
   --accent: #4da3ff;
+  --accent-red-1: #ff9bb8;
+  --accent-red-2: #ffd1dc;
   --radius: 14px;
   --blur: 18px;
   --transition: 0.25s ease;
@@ -100,6 +102,8 @@
   --bg-alt: #ffffff;
   --text: #142030;
   --accent: #006dde;
+  --accent-red-1: #ff8fb0;
+  --accent-red-2: #ffc3d2;
   --radius: 14px;
   --blur: 18px;
 }
@@ -149,16 +153,31 @@ main { width: min(1050px, 92%); margin: 0 auto; padding-bottom: 160px; }
   animation-delay: 80ms;
 }
 .hero-card { background: linear-gradient(145deg, var(--bg-alt), #13161a); padding:2.1rem 2.4rem 2.4rem; border-color: transparent; border-radius: var(--radius); box-shadow: 0 8px 28px -6px rgba(0,0,0,0.55); max-width:760px; width:100%; }
-.hero-title { margin:0 0 3.2rem; font-size: calc(clamp(3.4rem,10vw,4.8rem) + 10px); font-weight: 900; background: linear-gradient(90deg,#8ec5ff,#ffffff,#8ec5ff); background-size: 300% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; text-align:left; line-height:1.02; animation: heroGradientShift 8s linear infinite; width:100%; max-width:760px; }
+.hero-title { margin:0 0 1.35rem; font-size: calc(clamp(3.4rem,10vw,4.8rem) + 10px); font-weight: 900; background: linear-gradient(90deg,#8ec5ff,#ffffff,#8ec5ff); background-size: 300% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; text-align:left; line-height:1.02; animation: heroGradientShift 8s linear infinite; width:100%; max-width:760px; }
 .hero-title-outside { line-height:1.05; }
 .hero-tagline {
-  margin: 1.55rem 0 0;
+  margin: 0.35rem 0 1.65rem;
   font-size: clamp(1.55rem, 3.2vw, 2.05rem);
   font-weight: 850;
   letter-spacing: 0.4px;
   width: 100%;
   max-width: 760px;
-  text-align: center;
+  text-align: left;
+  color: var(--text);
+}
+
+.tagline-accent-red {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--accent-red-1), #ffffff, var(--accent-red-2));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: heroGradientShift 8s linear infinite;
+}
+
+.tagline-accent-blue {
+  display: inline-block;
   background: linear-gradient(90deg,#8ec5ff,#ffffff,#8ec5ff);
   background-size: 300% 100%;
   -webkit-background-clip: text;
@@ -194,6 +213,33 @@ main { width: min(1050px, 92%); margin: 0 auto; padding-bottom: 160px; }
 }
 .hero-title-outside { line-height:1.05; }
 [data-theme='light'] .hero-card { background: linear-gradient(145deg, var(--bg-alt), #f0f4f9); border-color: transparent; box-shadow: 0 8px 24px -6px rgba(0,0,0,0.18); }
+[data-theme='light'] .hero-title {
+  /* Keep the same animated gradient style, but avoid pure-white highlights
+     blending into the light background during the sweep. */
+  /* Use background-image (not shorthand) so background-size stays 300% and animates */
+  background-image: linear-gradient(90deg, #8ec5ff, #e7f1ff, #8ec5ff);
+  /* Ensure the gradient is clipped to glyphs in light mode */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme='light'] .tagline-accent-blue {
+  background-image: linear-gradient(90deg, #8ec5ff, #e7f1ff, #8ec5ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme='light'] .tagline-accent-red {
+  background-image: linear-gradient(90deg, var(--accent-red-1), #fff1f6, var(--accent-red-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
 .hero-sub { margin:0 0 1.1rem; font-weight:650; font-size: clamp(1.02rem, 1.1vw, 1.18rem); letter-spacing:0.6px; color:#b8c4cf; }
 .hero-desc { line-height:1.55; font-weight:400; font-size: 1.3rem; color:#d0d6dc; }
 .hero-desc.hero-summary-drop {
@@ -249,9 +295,8 @@ main { width: min(1050px, 92%); margin: 0 auto; padding-bottom: 160px; }
 .hero-tagline.hero-tagline-animate {
   will-change: transform, opacity, filter;
   animation:
-    heroGradientShift 8s linear infinite,
     heroDescReveal 720ms cubic-bezier(.22,.61,.36,1) both;
-  animation-delay: 0ms, 140ms;
+  animation-delay: 140ms;
 }
 
 @keyframes heroDescReveal {
@@ -482,12 +527,12 @@ main { width: min(1050px, 92%); margin: 0 auto; padding-bottom: 160px; }
   .toggle-text { display: none; }
 
   .hero { padding: 4.6rem 0 2.9rem; }
-  .hero-title { margin: 0 0 2.4rem; text-align: left; }
+  .hero-title { margin: 0 0 1.35rem; text-align: left; }
   .hero-card-wrap { display: flex; justify-content: center; }
   .hero-card { padding:2.2rem 1.9rem; }
 
-  /* Nudge tagline slightly lower on mobile */
-  .hero-tagline { margin-top: 1.65rem; }
+  /* Tagline sits right under title on mobile */
+  .hero-tagline { margin: 0.45rem 0 1.45rem; }
 
   /* Mobile: make hero summary slightly larger and more open */
   .hero-desc.hero-summary-drop {

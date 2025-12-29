@@ -209,6 +209,10 @@ main { width: min(1050px, 92%); margin: 0 auto; padding-bottom: 160px; }
   .hero-tagline.hero-tagline-animate { animation: none; }
   .hero-card-wrap-animate { animation: none; }
   .hero-summary-drop .drop-char { animation: none; opacity: 1; transform: none; }
+  .pill-list li { transition: none; }
+  .pill-list li:hover,
+  .pill-list li:active,
+  .pill-list li:focus-visible { transform: none; }
   html { scroll-behavior: auto; }
 }
 .hero-title-outside { line-height:1.05; }
@@ -334,14 +338,47 @@ main { width: min(1050px, 92%); margin: 0 auto; padding-bottom: 160px; }
 .body-text { line-height:1.55; max-width:780px; }
 
 .pill-list { list-style:none; padding:0; margin:1.2rem 0 0; display:flex; flex-wrap:wrap; gap:0.6rem; }
-.pill-list li { background:#20242a; padding:0.55rem 0.9rem; border-radius:999px; font-size:0.78rem; letter-spacing:0.5px; border:1px solid #292e35; }
+.pill-list li {
+  background:#20242a;
+  padding:0.55rem 0.9rem;
+  border-radius:999px;
+  font-size:0.78rem;
+  letter-spacing:0.5px;
+  border:1px solid #292e35;
+  transform: translateZ(0);
+  transition: transform 160ms cubic-bezier(.2,.8,.2,1);
+  will-change: transform;
+}
+
+.pill-list li:hover { transform: scale(1.06); }
+.pill-list li:active { transform: scale(1.02); }
+.pill-list li:focus-visible { transform: scale(1.06); outline: none; }
 [data-theme='light'] .pill-list li { background:#e9eef5; border-color:#cfd6de; color:#182534; }
 
 /* About subsections */
 .about-subsections { display:flex; flex-direction:column; gap:2rem; margin-top:1.8rem; }
 .sub-block { display:flex; flex-direction:column; }
-.sub-title { margin:0 0 0.85rem; font-size:1.05rem; font-weight:600; letter-spacing:0.4px; }
+.sub-title {
+  margin:0 0 0.85rem;
+  font-size:1.05rem;
+  font-family: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  font-variant-ligatures: none;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.25);
+}
 .tech-list { margin-top:0; }
+
+.tech-categories { display:flex; flex-direction:column; gap:1.05rem; }
+.tech-category-title {
+  margin:0 0 0.55rem;
+  font-size:0.85rem;
+  font-weight:650;
+  letter-spacing:0.5px;
+  color: var(--text);
+  opacity: 0.9;
+}
 .cert-list { list-style:none; padding:0; margin:0; display:grid; gap:0.55rem; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); }
 .cert-list li { background:#20242a; border:1px solid #292e35; padding:0.6rem 0.75rem; border-radius:10px; font-size:0.7rem; line-height:1.35; }
 [data-theme='light'] .cert-list li { background:#ffffff; border-color:#d6dde6; color:#182534; }
@@ -365,7 +402,16 @@ main { width: min(1050px, 92%); margin: 0 auto; padding-bottom: 160px; }
 .grid { display:grid; gap:1.4rem; grid-template-columns: repeat(auto-fill,minmax(250px,1fr)); }
 .card { background:#181b20; border-color: transparent; padding:1.2rem 1.15rem 1.25rem; border-radius: var(--radius); display:flex; flex-direction:column; gap:0.55rem; position:relative; }
 [data-theme='light'] .card { background:#ffffff; border-color: transparent; }
-.card h3 { margin:0; font-size:1.05rem; }
+.card h3 {
+  margin:0;
+  font-size:1.05rem;
+  font-family: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  font-variant-ligatures: none;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.22);
+}
 .card p { margin:0; font-size:0.82rem; line-height:1.4; color:#c3cacf; }
 [data-theme='light'] .card p { color:#2a3442; }
 .tags { display:flex; flex-wrap:wrap; gap:0.4rem; }
@@ -466,11 +512,26 @@ main { width: min(1050px, 92%); margin: 0 auto; padding-bottom: 160px; }
 .timeline-item { background:#181b20; border-color: transparent; padding:1.2rem 1.3rem 1.15rem; border-radius:14px; }
 [data-theme='light'] .timeline-item { background:#ffffff; border-color: transparent; }
 .time-head { display:flex; justify-content:space-between; align-items:center; gap:1rem; }
-.time-head h3 { margin:0; font-size:1rem; font-weight:600; }
+.time-head h3 {
+  margin:0;
+  font-size:1rem;
+  font-family: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  font-variant-ligatures: none;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.22);
+}
 .period { font-size:0.7rem; background:#22262c; padding:0.35rem 0.55rem; border-radius:6px; letter-spacing:0.5px; }
 [data-theme='light'] .period { background:#e9eef5; color:#182534; }
 .timeline-item ul { margin:0.7rem 0 0.9rem; padding-left:1.1rem; }
 .timeline-item li { font-size:0.78rem; line-height:1.35; margin-bottom:0.4rem; }
+
+.at-symbol {
+  font-family: 'Inter', system-ui, Arial, sans-serif;
+  letter-spacing: 0;
+  font-variant-ligatures: normal;
+}
 
 .contact-card { background:#181b20; border:1px solid #252a30; padding:1.4rem 1.3rem 1.35rem; border-radius:14px; max-width:600px; }
 [data-theme='light'] .contact-card { background:#ffffff; border-color:#d6dde6; }
@@ -480,7 +541,23 @@ main { width: min(1050px, 92%); margin: 0 auto; padding-bottom: 160px; }
 
 /* Enhanced contact layout */
 .contact-layout { display:flex; flex-direction:column; gap:1.4rem; }
-.contact-heading { margin:0 0 0.6rem; font-size:1.25rem; font-weight:600; }
+.contact-heading {
+  margin:0 0 0.6rem;
+  font-size:1.25rem;
+  font-family: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  font-variant-ligatures: none;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.22);
+}
+
+[data-theme='light'] .sub-title,
+[data-theme='light'] .card h3,
+[data-theme='light'] .time-head h3,
+[data-theme='light'] .contact-heading {
+  text-shadow: 0 1px 0 rgba(0,0,0,0.08);
+}
 .contact-text { margin:0 0 1rem; font-size:0.85rem; line-height:1.5; color:#c9d0d6; }
 [data-theme='light'] .contact-text { color:#2a3442; }
 .contact-details { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:0.4rem; font-size:0.78rem; }

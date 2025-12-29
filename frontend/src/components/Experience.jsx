@@ -15,7 +15,9 @@ const Experience = () => {
         {experience.map(e => (
           <div key={e.role + e.company} className="timeline-item" style={{ position: 'relative' }}>
             <div className="time-head">
-              <h3>{e.role} @ {e.company}</h3>
+              <h3>
+                {e.role} <span className="at-symbol">@</span> {e.company}
+              </h3>
               <span className="period">{e.period}</span>
             </div>
             <ul>

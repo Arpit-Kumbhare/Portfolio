@@ -30,6 +30,13 @@ export const about = {
       degree: '12TH Science (MSBSHSE)',
       period: 'April 2019 – March 2020',
       grade: '67%'
+    },
+    {
+      institution: 'Alphonsa Sr. Sec. School',
+      location: 'Wardha',
+      degree: '10TH (CBSE)',
+      period: 'April 2006 – March 2017',
+      grade: '82%'
     }
   ]
 };

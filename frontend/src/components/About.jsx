@@ -62,7 +62,7 @@ const About = () => {
                 <span className="edu-degree">{e.degree}</span>
                 <span className="edu-inst">{e.institution}</span>
                 <span className="edu-period">{e.period}</span>
-                {e.grade && <span className="edu-grade">{e.grade}</span>}
+                {/* {e.grade && <span className="edu-grade">{e.grade}</span>} */}
               </li>
             ))}
           </ul>
